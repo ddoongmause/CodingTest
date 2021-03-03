@@ -7,9 +7,11 @@ public class PermCheck {
     public static void main(String[] args) {
         int[] a = {4, 1, 3, 2};
         int[] b = {4, 1, 3};
+        int[] c = {10, 4, 3, 5, 6};
 
         solution(a);
         solution(b);
+        solution(c);
     }
 
     public static int solution(int[] A) {
@@ -17,6 +19,7 @@ public class PermCheck {
         HashSet<Integer> arraySet = new HashSet<>();
         int low = 1000000000;
         int high = 0;
+        int answer = 0;
         for(int i=0; i<A.length; i++){
             arraySet.add(A[i]);
             if(low > A[i]){
@@ -25,14 +28,19 @@ public class PermCheck {
             if(high < A[i]){
                 high = A[i];
             }
-
-
         }
 
-        for(int j=1; j < 1000000001; j++){
+        for(int j=low; j <= high + 1; j++){
             if(!arraySet.contains(j)){
-
+                if((low + arraySet.size() -1) < j){
+                    answer = 1;
+                }
+                break;
             }
+
+
         }
+        System.out.println(answer);
+        return answer;
     }
 }
